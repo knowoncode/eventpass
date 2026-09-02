@@ -3,11 +3,11 @@ from flask import session
 import os
 
 # PostgreSQL configuration
-DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_HOST = os.getenv("DB_HOST", "dpg-dabua6fqj5pc739c034g-a")
 DB_PORT = os.getenv("DB_PORT", "5432")
-DB_NAME = os.getenv("DB_NAME", "eventpass")
-DB_USER = os.getenv("DB_USER", "postgres")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "root")
+DB_NAME = os.getenv("DB_NAME", "eventpass_5x1a")
+DB_USER = os.getenv("DB_USER", "root")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "8SmTeqShZSbeU6nMrkYPBLuwzJcKgDb9")
 
 
 class User:
