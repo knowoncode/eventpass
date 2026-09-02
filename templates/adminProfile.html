@@ -1,0 +1,183 @@
+{% extends "adminLayout.html" %}
+
+{% block content %}
+<style>
+        body {
+            background-color: #121212;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        .profile-card {
+            max-width: 700px;
+            margin: auto;
+            background-color: #1e1e1e;
+            border: 1px solid #444;
+            border-radius: 10px;
+        }
+
+        .profile-header {
+            border-bottom: 1px solid #444;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .admin-badge {
+            font-size: 14px;
+            padding: 6px 12px;
+        }
+
+        .form-control {
+            background-color: #2b2b2b;
+            border: 1px solid #555;
+            color: white;
+        }
+
+        .form-control:focus {
+            background-color: #2b2b2b;
+            color: white;
+            border-color: #ffc107;
+            box-shadow: none;
+        }
+
+        .email-box {
+            background-color: #2b2b2b;
+            border: 1px solid #555;
+            padding: 10px 12px;
+            border-radius: 5px;
+            color: #aaa;
+        }
+
+        .danger-section {
+            border-top: 1px solid #444;
+            margin-top: 30px;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container my-5">
+        <div class="profile-card p-4">
+            <!-- Flash Messages -->
+            {% with message = get_flashed_messages() %}
+
+                {% if message %}
+
+                    {% for msg in message %}
+
+                        <div class="alert alert-danger" role="alert">
+                            {{ msg }}
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            {% endwith %}
+
+
+            <!-- Admin Profile -->
+            {% for r in record %}
+
+            <form action="/adminProfile" method="post">
+
+                <!-- First & Last Name -->
+                <div class="row">
+
+                    <div class="col-md-12 mb-3">
+
+                        <label class="form-label">
+                            College Name
+                        </label>
+
+                        <input
+                            type="text"
+                            name="collegeName"
+                            value="{{ r[0] }}"
+                            class="form-control"
+                        >
+                    </div>
+                </div>
+
+
+                <!-- Email -->
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Email Address
+                    </label>
+
+                    <div class="email-box">
+                        {{ r[1] }}
+                    </div>
+
+                    <small class="text-secondary">
+                        Email address cannot be changed.
+                    </small>
+
+                </div>
+
+                <!-- Update Button -->
+                <button
+                    type="submit"
+                    class="btn btn-success w-100">
+                    Update Profile
+                </button>
+
+            </form>
+
+            {% endfor %}
+
+
+            <!-- Account Security -->
+            <div class="mt-4">
+
+                <h5>Account Security</h5>
+
+                <p class="text-secondary">
+                    Update your password to keep your administrator
+                    account secure.
+                </p>
+
+                <a href="/adminChangePassword"
+                   class="btn btn-outline-warning">
+                    Change Password
+                </a>
+
+            </div>
+
+
+            <!-- Delete Account -->
+            <div class="danger-section">
+
+                <h5 class="text-danger">
+                    Danger Zone
+                </h5>
+
+                <p class="text-secondary">
+                    Deleting the administrator account is permanent
+                    and cannot be undone.
+                </p>
+
+                <a href="/deleteAdminAccount"
+                   class="btn btn-danger"
+                   onclick="return confirm('Are you sure you want to delete your admin account?');">
+                    Delete Admin Account
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+{% endblock %}

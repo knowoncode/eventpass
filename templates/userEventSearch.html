@@ -1,0 +1,25 @@
+{% extends "userLayout.html" %}
+{% block content %}        
+    <!-- show college list in drop down menu -->
+    {% with message = get_flashed_messages() %}
+    {% if message %}
+    {% for msg in message %}
+    <div class="alert alert-danger" role="alert">
+        {{msg}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <form action="/userEventSearch" method="post">
+    <select name="collegeEmail" class="form-select">
+        <option selected disabled>Choose your College from the list</option>
+    {% for col in college %}
+            <option value="{{col[1]}}">{{col[0]}}</option>
+    {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-success m-4 w-50">Search</button>
+    </form>
+    <!-- ************************************************************ -->
+    
+            
+{% endblock %}

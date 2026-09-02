@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>EventFestMyPass - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>body { background-color: #121212; min-height: 100vh; display: flex; flex-direction: column; } main { flex: 1; }</style>
+</head>
+<body>
+    <!-- Navbar omitted for brevity -->
+    
+    <main class="container my-5">
+        <div class="d-flex justify-content-start align-items-center mb-4 border-bottom border-secondary pb-3">
+            <h2>User Dashboard :<a href="/profile" class="btn btn-warning w-50">{{session['userName']}}</a> </h2>
+            <a href="/userEventSearch" class="btn btn-outline-primary mx-3">Event</a>
+            <a href="/logout" class="btn btn-outline-danger">Logout</a>
+        </div>
+        
+        
+           {% block content %} 
+           {% endblock %}
+        
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

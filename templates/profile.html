@@ -1,0 +1,37 @@
+{% extends "userLayout.html" %}
+        
+{% block content %}     
+        
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="pills-profile">
+                <div class="card bg-dark border-secondary p-3">
+                    <h4>User Profile</h4>
+                        {% with message = get_flashed_messages() %}
+                        {% if message %}
+                        {% for msg in message %}
+                        <div class="alert alert-danger" role="alert">
+                            {{msg}}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+
+                    {% for r in record %}
+                    <form action="/profile" method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3"><label>First Name:</label><input type="text" name="firstName" value="{{r[0]}}" class="form-control"></div>
+                            <div class="col-md-6 mb-3"><label>Last Name:</label><input type="text" name="lastName" value="{{r[1]}}" class="form-control"></div>
+                        </div>
+                        <div class="mb-3"><label>Email address:</label><div class="form-control">{{r[2]}}</div></div>
+                        
+                        <button type="submit" class="btn btn-success w-100 btn-anim text-dark">Update</button>
+                        
+                    </form>
+                    {% endfor %}
+                    <a class="link link-primary" href="/changePassword">change password</a>
+                    <a class="link link-primary mt-3" href="/deleteAccount"><button class="btn btn-danger">Delete Account</button></a>
+                </div>
+            </div>
+            
+        </div>
+{% endblock %}

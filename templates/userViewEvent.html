@@ -1,0 +1,51 @@
+{% extends "userLayout.html" %}
+{% block content %}        
+    
+    
+    <div class="container">
+        {% with message = get_flashed_messages() %}
+        {% if message %}
+        {% for msg in message %}
+        <div class="alert alert-danger">
+        {{msg}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <table class="table table-dark table-hover table-stripe">
+        <thead>
+            <tr>
+                <th>Event ID</th>
+                <th>Event Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Venue</th>
+                <th>Capacity</th>
+                <th>Type</th>
+                <th>Pass</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% if record %}
+        {% for r in record %}
+            <tr>
+                <th>{{r[0]}}</th>
+                <th>{{r[1]}}</th>
+                <th>{{r[2]}}</th>
+                <th>{{r[3]}}</th>
+                <th>{{r[4]}}</th>
+                <th>{{r[5]}}</th>
+                <th>{{r[6]}}</th>
+                <th><a href="/generatePass?eventID={{r[0]}}" class="btn btn-info text-dark">Get Pass</a></th>
+                
+            </tr>
+        {% endfor %}
+        {% else %}
+         <div class="alert alert-warning">currently no event found!!</div>
+        {% endif %}
+        </tbody>
+        </table>
+       </div>
+            
+{% endblock %}
