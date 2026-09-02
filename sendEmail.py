@@ -4,11 +4,12 @@ class Email:
     def __init__(self,app):
         #-------------------mail configuration---------------------------
         app.config["MAIL_SERVER"]='smtp.gmail.com'
-        app.config["MAIL_PORT"] = '587'
+        app.config["MAIL_PORT"] = 587
         app.config["MAIL_USERNAME"] = 'knowon.edu@gmail.com'
         app.config["MAIL_PASSWORD"]= 'swik mzrz xmpe ebkd'
         app.config["MAIL_USE_TLS"] = True
         app.config["MAIL_USE_SSL"] = False
+        app.config["MAIL_TIMEOUT"] = 20
         self.mail = Mail(app)  #Mail class object create
 
     def compose(self,subject,email,message,path,app):
